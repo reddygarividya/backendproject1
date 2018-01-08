@@ -1,0 +1,13 @@
+com\spring\model\Category.class
+com\spring\daoImpl\CategoryDAOImpl.class
+com\spring\dao\SupplierDAO.class
+com\spring\dao\ProductDAO.class
+com\spring\dao\UserDAO.class
+com\spring\model\Product.class
+com\spring\daoImpl\UserDAOImpl.class
+com\spring\dao\CategoryDAO.class
+com\spring\model\Supplier.class
+com\spring\daoImpl\ProductDAOImpl.class
+com\spring\config\hiberConfig.class
+com\spring\daoImpl\SupplierDAOImpl.class
+com\spring\model\User.class
