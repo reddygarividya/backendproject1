@@ -9,9 +9,9 @@ public interface ProductDAO
 	
 	public void insertProduct(Product product);
 	public List<Product> retrieve();
+	public void deleteProd(int pid);
 
-	public Product findByPID(); 
-	
+
 
 }  
 

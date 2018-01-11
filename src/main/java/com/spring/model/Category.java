@@ -10,18 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="CategoryTable")
 public class Category implements Serializable 
 {
-	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue
 	private int cid;
 	private String cname;
 	public int getCid() {
@@ -36,15 +32,9 @@ public class Category implements Serializable
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	 @OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy="category")
-	 
-	 private Set<Product> product=new HashSet<Product>(0);
 	
-	 
+	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER, mappedBy="category")
+	private Set<Product> product=new HashSet<Product>(0);
 	
 
-} 
-
+}

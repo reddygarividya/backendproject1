@@ -1,4 +1,3 @@
-
 package com.spring.config;
 
 import java.util.Properties;
@@ -39,9 +38,9 @@ public class hiberConfig
 		public DataSource getDataSource() {
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName("org.h2.Driver");
-			dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+			dataSource.setUrl("jdbc:h2:tcp://localhost/~/BeautiProduct");
 			dataSource.setUsername("sa");
-			dataSource.setPassword("sa");
+			dataSource.setPassword("");
 			System.out.println("Datasource");
 			return dataSource;
 

@@ -8,16 +8,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.spring.dao.ProductDAO;
 import com.spring.model.Product;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO
 {
-	public  ProductDAOImpl(){}
-	
 	@Autowired
 	SessionFactory sessionFactory;
 	
@@ -26,19 +22,14 @@ public class ProductDAOImpl implements ProductDAO
 		this.sessionFactory=sessionFactory;
 	}
 
-	
-	@Transactional
-	public void insertProduct(Product product)
-	{
-		Session session = sessionFactory.openSession();
+	public  void insertProduct(Product product) {
+		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(product);
+		session.persist(product);
 		session.getTransaction().commit();
-		
-	}
-	
-	public List<Product> retrieve()
-	{
+		}
+
+	public List<Product> retrieve() {
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		List<Product> li=session.createQuery("from Product").list();
@@ -46,54 +37,57 @@ public class ProductDAOImpl implements ProductDAO
 		return li;
 	}
 
-	@Transactional
-	 public Product findByPID(int pid) 
-	{
-		Session session=sessionFactory.openSession();
-		Product p=null;
-		try
-		{
-			session.beginTransaction();
-			  p= session.get(Product.class, pid); 
-			session.getTransaction().commit();
-			
-		}
-		catch(HibernateException e)
-		{
-			System.out.println(e.getMessage());
-			session.getTransaction().rollback();
-		}
-		return p; 
-	}
 
-
-
-	public Product findByPID() {
-		return null;
-	}
-public List<Product> getProdByCatId(int cid)
-{
+	public Product findByPID(int pid) {
 	Session session=sessionFactory.openSession();
-	List<Product> prod=null;
-	try {
+	Product p=null;
+	try{
 		session.beginTransaction();
-		prod=session.createQuery("from Product where cid=" +cid).list();
+		p=session.get(Product.class,pid);
 		session.getTransaction().commit();
-	} catch(Exception e)
+		}
+	catch(HibernateException e)
 	{
 		e.printStackTrace();
 		session.getTransaction().rollback();
-		
 	}
-	return prod;
+	
+	return p;
 	
 }
 
-
+public List<Product> getProdByCatId( int cid) {
+	Session session=sessionFactory.openSession();
+	List<Product> prod= null;
+	try{
+		session.beginTransaction();
+		prod=session.createQuery("from product where cid=" +cid).list();
+		session.getTransaction().commit();
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		session.getTransaction().rollback();
+	}
 	
-	 
+	return prod;
+}
+public void updateprod(Product p)
+{
+Session session=sessionFactory.openSession();
+session.beginTransaction();
+session.update(p);
+session.getTransaction().commit();
+}
+public void deleteProd(int pid)
+{
+	Session session=sessionFactory.openSession();
+	session.beginTransaction();
+	Product p=(Product)session.get(Product.class,pid);
+	session.delete(p);
+	session.getTransaction().commit();
+}
 
 
- 
-	
-} 
+
+}

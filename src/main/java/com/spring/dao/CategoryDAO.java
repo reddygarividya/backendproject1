@@ -10,4 +10,5 @@ public interface CategoryDAO
 	public void insertCategory(Category category);
 	public Category findByCatId(int cid);
 	public List<Category> retrieve();
+	public void deleteCat(int cid);
 } 

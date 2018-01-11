@@ -13,43 +13,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.dao.CategoryDAO;
 import com.spring.model.Category;
+
 @Repository
 @Service
 public class CategoryDAOImpl implements CategoryDAO
 {
-	public  CategoryDAOImpl(){}
-
 	@Autowired
 	SessionFactory sessionFactory;
 	
+	
 	public CategoryDAOImpl(SessionFactory sessionFactory)
 	{
-		this.sessionFactory=sessionFactory;
+		this.sessionFactory = sessionFactory;
 	}
-
-	
-	@Transactional
 	public void insertCategory(Category category)
 	{
-		Session session = sessionFactory.openSession();
+		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		session.persist(category);
 		session.getTransaction().commit();
 		
 	}
-	
-	
 	public List<Category> retrieve()
 	{
-		Session session = sessionFactory.openSession();
+		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		List<Category> li = session.createQuery("from Category").list();
-		  
+		List<Category>li=session.createQuery("from Category").list();
 		session.getTransaction().commit();
 		return li;
-		
 	}
-	
 	public Category findByCatId(int cid)
 	{
 		Session session=sessionFactory.openSession();
@@ -57,7 +49,7 @@ public class CategoryDAOImpl implements CategoryDAO
 		try
 		{
 			session.beginTransaction();
-			c= session.get(Category.class, cid); 
+			c= session.get(Category.class, cid);
 			session.getTransaction().commit();
 		}
 		catch(HibernateException e)
@@ -67,4 +59,14 @@ public class CategoryDAOImpl implements CategoryDAO
 		}
 		return c;
 	}
-} 
+	
+	public void deleteCat(int cid) 
+	{
+			Session session=sessionFactory.openSession();
+			session.beginTransaction();
+			Category c=(Category)session.get(Category.class,cid);
+			session.delete(c);
+			session.getTransaction().commit();
+		}
+	}
+
