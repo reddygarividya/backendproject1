@@ -16,8 +16,11 @@ import org.springframework.stereotype.Component;
 public class Supplier implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	
 	private int sid;
 	private String sname;
 	public int getSid() {

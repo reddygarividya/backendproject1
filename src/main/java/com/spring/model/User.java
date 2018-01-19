@@ -16,12 +16,7 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue
 	private int id;
-	 public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	private String firstName;
     private String lastName;
     private String email;
@@ -29,6 +24,12 @@ public class User implements Serializable
     private String phone;
     private String role;
     private boolean enabled;
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -2,14 +2,18 @@ package com.spring.daoImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.spring.dao.ProductDAO;
 import com.spring.model.Product;
+
 
 @Repository
 public class ProductDAOImpl implements ProductDAO
@@ -72,11 +76,11 @@ public List<Product> getProdByCatId( int cid) {
 	
 	return prod;
 }
-public void updateprod(Product p)
+public void updateprod(Product prod)
 {
 Session session=sessionFactory.openSession();
 session.beginTransaction();
-session.update(p);
+session.update(prod);
 session.getTransaction().commit();
 }
 public void deleteProd(int pid)
@@ -87,6 +91,22 @@ public void deleteProd(int pid)
 	session.delete(p);
 	session.getTransaction().commit();
 }
+
+@Override
+public void updateProd(Product prod) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Transactional
+public List<Product> getProductByCategoryID(int cid) {
+	String hql = "from Product where cid= "+cid;
+	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	List<Product> catproducts = (List<Product>) query.list();
+	return catproducts;
+
+}
+
 
 
 

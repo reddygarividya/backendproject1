@@ -16,12 +16,18 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.spring.dao.AddressDAO;
+import com.spring.dao.CartDAO;
 import com.spring.dao.CategoryDAO;
+import com.spring.dao.OrderDAO;
 import com.spring.dao.ProductDAO;
 import com.spring.dao.SupplierDAO;
 
 import com.spring.dao.UserDAO;
+import com.spring.daoImpl.AddressDAOImpl;
+import com.spring.daoImpl.CartDAOImpl;
 import com.spring.daoImpl.CategoryDAOImpl;
+import com.spring.daoImpl.OrderDAOImpl;
 import com.spring.daoImpl.ProductDAOImpl;
 import com.spring.daoImpl.SupplierDAOImpl;
 
@@ -50,8 +56,8 @@ public class hiberConfig
 			Properties properties = new Properties();
 			properties.put("hibernate.show_sql", "true");
 			properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-			//properties.put("hibernate.hbm2ddl.auto", "create");
-		   properties.put("hibernate.hbm2ddl.auto", "update");
+			//	properties.put("hibernate.hbm2ddl.auto", "create");
+			properties.put("hibernate.hbm2ddl.auto", "update");
 			System.out.println("Hibernate Properties");
 			return properties;
 
@@ -98,7 +104,29 @@ public class hiberConfig
 	@Bean(name = "productDAO")
 	public ProductDAO saveProduct(SessionFactory sessionFactory) {
 	    return new ProductDAOImpl(sessionFactory);
+	}
+	    @Autowired
+		@Bean(name="cartDAO")
+		public CartDAO getCart(SessionFactory sessionFactory)
+		{
+			return new CartDAOImpl(sessionFactory);
+			
+		}
+		@Autowired
+		@Bean(name = "addressDAO")
+		public AddressDAO getAddressDAO(SessionFactory sessionFactory)
+		{
+
+			return new AddressDAOImpl(sessionFactory);
+		}
+		
+		
+		@Autowired
+		@Bean(name = "orderDAO")
+		public OrderDAO getOrdersDAO(SessionFactory sessionFactory)
+		{
+
+			return new OrderDAOImpl(sessionFactory);
+		}
 	
 } 
-
-}
