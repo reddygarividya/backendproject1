@@ -22,10 +22,7 @@ public class Cart {
 	private String status;
 	private int userId;
 	private String email;
-	
-	
-	
-	
+		
 	public String getEmail() {
 		return email;
 	}
