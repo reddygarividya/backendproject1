@@ -10,9 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Order_details")
 public class Order
-{
-	@Id
-	@GeneratedValue
+{@Id
 	private String orderId;
 	
 	private int userId;
@@ -142,5 +140,5 @@ public class Order
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-
+	
 }

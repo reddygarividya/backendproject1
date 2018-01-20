@@ -29,7 +29,7 @@ public class ProductDAOImpl implements ProductDAO
 	public  void insertProduct(Product product) {
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		session.persist(product);
+		session.saveOrUpdate(product);
 		session.getTransaction().commit();
 		}
 
@@ -92,11 +92,6 @@ public void deleteProd(int pid)
 	session.getTransaction().commit();
 }
 
-@Override
-public void updateProd(Product prod) {
-	// TODO Auto-generated method stub
-	
-}
 
 @Transactional
 public List<Product> getProductByCategoryID(int cid) {
@@ -105,6 +100,12 @@ public List<Product> getProductByCategoryID(int cid) {
 	List<Product> catproducts = (List<Product>) query.list();
 	return catproducts;
 
+}
+
+@Override
+public void updateProd(Product prod) {
+	// TODO Auto-generated method stub
+	
 }
 
 

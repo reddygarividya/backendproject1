@@ -20,6 +20,7 @@ import com.spring.dao.AddressDAO;
 import com.spring.dao.CartDAO;
 import com.spring.dao.CategoryDAO;
 import com.spring.dao.OrderDAO;
+import com.spring.dao.PaymentDAO;
 import com.spring.dao.ProductDAO;
 import com.spring.dao.SupplierDAO;
 
@@ -28,6 +29,7 @@ import com.spring.daoImpl.AddressDAOImpl;
 import com.spring.daoImpl.CartDAOImpl;
 import com.spring.daoImpl.CategoryDAOImpl;
 import com.spring.daoImpl.OrderDAOImpl;
+import com.spring.daoImpl.PaymentDAOImpl;
 import com.spring.daoImpl.ProductDAOImpl;
 import com.spring.daoImpl.SupplierDAOImpl;
 
@@ -127,6 +129,13 @@ public class hiberConfig
 		{
 
 			return new OrderDAOImpl(sessionFactory);
+		}
+		@Autowired
+		@Bean(name = "paymentDAO")
+		public PaymentDAO getPaymentDAO(SessionFactory sessionFactory)
+		{
+
+			return new PaymentDAOImpl(sessionFactory);
 		}
 	
 } 

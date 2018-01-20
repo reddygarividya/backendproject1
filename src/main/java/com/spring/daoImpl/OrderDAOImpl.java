@@ -57,7 +57,7 @@ public OrderDAOImpl(SessionFactory sessionFactory) {
 	@Transactional
 	public List<Order> getAllOrdersOfUser(int userId) {
 		
-		List<Order> orderList =  sessionFactory.getCurrentSession().createQuery("from Orders where userId = :userId and orderStatus = 'PROCESSED'",Order.class).setParameter("userId", userId).list();
+		List<Order> orderList =  sessionFactory.getCurrentSession().createQuery("from Order where userId = :userId and orderStatus = 'PROCESSED'",Order.class).setParameter("userId", userId).list();
 		return orderList;
 	}
 
